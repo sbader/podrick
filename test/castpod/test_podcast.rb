@@ -53,10 +53,13 @@ module Castpod
       end
     end
 
-    # describe "podcast episode loading" do
-    #   it "loads each episode from xml" do
-    #   end
-    # end
+    describe "podcast episode loading" do
+      it "loads each episode from xml" do
+        podcast = Podcast.from_xml(File.read('test/assets/back_to_work.xml'))
+        assert_equal 105, podcast.episodes.length
+        assert_kind_of Episode, podcast.episodes.first
+      end
+    end
   end
 end
 

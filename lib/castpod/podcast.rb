@@ -46,5 +46,9 @@ module Castpod
     def itunes
       @itunes ||= Itunes.new(xml_metadata)
     end
+
+    def episodes
+      @episodes ||= xml_doc.xpath('//item').map { |item_xml| Episode.new(item_xml) }
+    end
   end
 end
