@@ -3,12 +3,15 @@ require 'nokogiri'
 
 module Podrick
   class Podcast
-    def initialize xml_string
+    attr_reader :etag
+
+    def initialize xml_string, etag = nil
       @xml = xml_string
+      @etag = etag
     end
 
-    def self.from_xml xml_string
-      new(xml_string)
+    def self.from_xml xml_string, etag = nil
+      new(xml_string, etag)
     end
 
     def self.from_url url, etag = nil
@@ -23,7 +26,7 @@ module Podrick
       if response.status == '301'
         nil
       else
-        new(response.body)
+        new(response.body, response.headers['ETag'])
       end
     end
 
