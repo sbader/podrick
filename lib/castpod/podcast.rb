@@ -44,7 +44,23 @@ module Castpod
     end
 
     def itunes
-      @itunes ||= Itunes.new(xml_metadata)
+      @itunes ||= begin
+        image = Struct.new(:href)
+        owner = Struct.new(:name, :email)
+        itunes = Struct.new(:subtitle, :author, :summary, :keywords, :explicit, :category, :subcategories, :image, :owner)
+
+        itunes.new(
+          xml_doc.at_xpath("//itunes:subtitle").content,
+          xml_doc.at_xpath("//itunes:author").content,
+          xml_doc.at_xpath("//itunes:summary").content,
+          xml_doc.at_xpath("//itunes:keywords").content,
+          xml_doc.at_xpath("//itunes:explicit").content,
+          xml_doc.at_xpath("//itunes:category")["text"],
+          xml_doc.xpath("//itunes:category//itunes:category").map { |category| category["text"] },
+          image.new(xml_doc.at_xpath("//itunes:image")["href"]),
+          owner.new(xml_doc.at_xpath("//itunes:owner//itunes:name").content, xml_doc.at_xpath("//itunes:owner//itunes:email").content)
+        )
+      end
     end
 
     def episodes
