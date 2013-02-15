@@ -1,4 +1,4 @@
-module Castpod
+module Podrick
   class Episode
     attr_reader :xml_doc
 

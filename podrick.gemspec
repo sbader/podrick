@@ -2,15 +2,15 @@
 require File.expand_path('../lib/castpod/version', __FILE__)
 
 Gem::Specification.new do |gem|
-  gem.name          = "castpod"
+  gem.name          = "podrick"
   gem.author        = "Scott Bader"
   gem.email         = "sbader2@gmail.com"
   gem.summary       = "A simple library to work with podcasts"
-  gem.description   = "Castpod is a library that allows you to quickly, and easily work with a podcast feed. You can parse a feed, see the newest episodes, and download files"
+  gem.description   = "Podrick is a library that allows you to quickly, and easily work with a podcast feed. You can parse a feed, see the newest episodes, and download files"
   gem.homepage      = "http://sbader.github.com/castpod"
   gem.license       = "MIT"
 
-  gem.version       = Castpod::VERSION
+  gem.version       = Podrick::VERSION
 
   gem.executables   = []
   gem.files         = `git ls-files | grep -v pod`.split("\n")

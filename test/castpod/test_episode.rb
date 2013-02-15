@@ -1,6 +1,6 @@
 require 'helper'
 
-module Castpod
+module Podrick
   class TestEpisode < MiniTest::Unit::TestCase
     describe "episode loading" do
       it "loads the metadata from a nokogiri xml doc" do

@@ -9,4 +9,4 @@ require 'minitest/autorun'
 
 require 'webmock/minitest'
 
-require 'castpod'
+require 'podrick'

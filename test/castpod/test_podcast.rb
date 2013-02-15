@@ -1,6 +1,6 @@
 require 'helper'
 
-module Castpod
+module Podrick
   class TestPodcast < MiniTest::Unit::TestCase
     describe "podcast metadata loading" do
       it "loads the metadata from xml" do

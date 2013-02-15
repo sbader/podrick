@@ -1,7 +1,7 @@
 require 'faraday'
 require 'nokogiri'
 
-module Castpod
+module Podrick
   class Podcast
     def initialize xml_string
       @xml = xml_string
