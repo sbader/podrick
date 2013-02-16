@@ -28,7 +28,15 @@ module Podrick
       @enclosure ||= begin
         enclosure_struct = Struct.new(:url, :length, :type)
         enclosure = xml_doc.at_xpath("enclosure")
-        enclosure_struct.new(enclosure["url"], enclosure["length"], enclosure["type"])
+        if enclosure
+          enclosure_struct.new(
+            enclosure["url"],
+            enclosure["length"],
+            enclosure["type"]
+          )
+        else
+          enclosure_struct.new(nil, nil, nil)
+        end
       end
     end
 
