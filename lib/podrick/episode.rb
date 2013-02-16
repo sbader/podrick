@@ -9,7 +9,7 @@ module Podrick
     %w[title link guid author description].each do |method|
       class_eval <<-RUBY, __FILE__, __LINE__ + 1
         def #{method}
-          instance_variable_get("@#{method}") || instance_variable_set("@#{method}", @xml_doc.at_xpath("#{method}").content)
+          instance_variable_get("@#{method}") || instance_variable_set("@#{method}", xml_content_at("#{method}"))
         end
       RUBY
     end
@@ -21,7 +21,7 @@ module Podrick
     alias pubDate published_date
 
     def content
-      @content ||= xml_doc.at_xpath("content:encoded").content
+      @content ||= xml_content_at("content:encoded")
     end
 
     def enclosure
@@ -36,15 +36,32 @@ module Podrick
       @itunes ||= begin
         image = Struct.new(:href)
         itunes = Struct.new(:author, :duration, :subtitle, :summary, :keywords, :image)
+        image_href = (node = xml_node_at("itunes:image")) ? node["href"] : nil
 
         itunes.new(
-          xml_doc.at_xpath("itunes:author").content,
-          xml_doc.at_xpath("itunes:duration").content,
-          xml_doc.at_xpath("itunes:subtitle").content,
-          xml_doc.at_xpath("itunes:summary").content,
-          xml_doc.at_xpath("itunes:keywords").content,
-          image.new(xml_doc.at_xpath("itunes:image")["href"])
+          xml_content_at("itunes:author"),
+          xml_content_at("itunes:duration"),
+          xml_content_at("itunes:subtitle"),
+          xml_content_at("itunes:summary"),
+          xml_content_at("itunes:keywords"),
+          image.new(image_href)
         )
+      end
+    end
+
+    def xml_content_at string
+      begin
+        if node = xml_doc.at_xpath(string)
+          node.content
+        end
+      rescue Nokogiri::XML::XPath::SyntaxError
+        nil
+      end
+    end
+
+    def xml_node_at string
+      if node = xml_doc.at_xpath(string)
+        node
       end
     end
   end

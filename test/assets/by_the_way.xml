@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:cc="http://web.resource.org/cc/" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:media="http://search.yahoo.com/mrss/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+	<channel>
+		<atom:link href="http://rss.earwolf.com/by-the-way-in-conversation-with-jeff-garlin" rel="self" type="application/rss+xml"/>
+		<title>By The Way, In Conversation with Jeff Garlin</title>
+		<link><![CDATA[http://www.earwolf.com/show/by-the-way-in-conversation-with-jeff-garlin/]]></link>
+		<description><![CDATA[By The Way, In Conversation with Jeff Garlin is an eavesdroppers paradise. Recorded live at Largo in LA, its a series of casual talks between the host and his most interesting show business friends. Agendas are out the window and no topics are off limits in these revealing chats.]]></description>
+		<language>en-us</language>
+		<copyright><![CDATA[Earwolf Media, LLC]]></copyright>
+		<managingEditor>jeff@earwolf.com (Jeff Ullrich)</managingEditor>
+		<pubDate>Sat, 16 Feb 2013 00:09:50 -0800</pubDate>
+		<lastBuildDate>Sat, 16 Feb 2013 00:09:50 -0800</lastBuildDate>
+		<generator>Dead Wolf Reanimator v1.0</generator>
+		<docs>http://www.earwolf.com</docs>
+		<itunes:author>Earwolf</itunes:author>
+		<itunes:category text="Comedy"/>
+		<itunes:image href="http://cdn.earwolf.com/wp-content/uploads/2013/01/BTW-Logo.jpg" />
+		<itunes:explicit>Yes</itunes:explicit>
+		<itunes:owner>
+			<itunes:name><![CDATA[Earwolf]]></itunes:name>
+			<itunes:email>jeff@earwolf.com</itunes:email>
+		</itunes:owner>
+		<itunes:summary><![CDATA[]]></itunes:summary>
+		<itunes:subtitle><![CDATA[]]></itunes:subtitle>
+		<image>
+			<url>http://cdn.earwolf.com/wp-content/uploads/2013/01/BTW-Logo.jpg</url>
+			<title>By The Way, In Conversation with Jeff Garlin</title>
+			<link><![CDATA[http://www.earwolf.com/show/by-the-way-in-conversation-with-jeff-garlin/]]></link>
+		</image>
+		<item>
+			<title>3 Jeff Tweedy</title>
+			<link><![CDATA[http://www.earwolf.com/episode/jeff-tweedy/]]></link>
+			<description><![CDATA[Wilco frontman Jeff Tweedy is the inspiration behind Garlins venture into recording these candid conversations. The two Jeffs bond over their love of naps, the joy they get from hating things, and both having moments where their success could mean no...]]></description>
+			<guid isPermaLink="false"><![CDATA[http://www.earwolf.com/episode/jeff-tweedy/]]></guid>
+			<media:thumbnail url="http://cdn.earwolf.com/wp-content/uploads/2013/01/BTW-Logo.jpg" />
+			<pubDate>Thu, 07 Feb 2013 00:04:22 -0800</pubDate>
+			<itunes:explicit>Yes</itunes:explicit>
+			<itunes:subtitle><![CDATA[Wilco frontman Jeff Tweedy is the inspiration behind Garlins venture into recording these candid conversations. The two Jeffs bond over their love of naps, the joy they get from hating things, and both having moments where their success could mean no...]]></itunes:subtitle>
+			<itunes:duration>01:42:35</itunes:duration>
+			<enclosure length="38489504" type="audio/mpeg" url="http://traffic.libsyn.com/jeffgarlin/BTW_003_20130205_Tweedy_EDIT_02.mp3" />
+		</item>
+		<item>
+			<title>2 Lena Dunham</title>
+			<link><![CDATA[http://www.earwolf.com/episode/lena-dunham/]]></link>
+			<description><![CDATA[Girls creator/star Lena Dunham might be Garlins new best friend. We hear about Lenas biggest regrets, some of her red carpet adventures, and being horrified by The Client List. Jeff expresses how she has inspired him with her vulnerability, shares so...]]></description>
+			<guid isPermaLink="false"><![CDATA[http://www.earwolf.com/episode/lena-dunham/]]></guid>
+			<media:thumbnail url="http://cdn.earwolf.com/wp-content/uploads/2013/01/BTW-Logo.jpg" />
+			<pubDate>Thu, 24 Jan 2013 00:29:02 -0800</pubDate>
+			<itunes:explicit>Yes</itunes:explicit>
+			<itunes:subtitle><![CDATA[Girls creator/star Lena Dunham might be Garlins new best friend. We hear about Lenas biggest regrets, some of her red carpet adventures, and being horrified by The Client List. Jeff expresses how she has inspired him with her vulnerability, shares so...]]></itunes:subtitle>
+			<itunes:duration>01:29:45</itunes:duration>
+			<enclosure length="33872257" type="audio/mpeg" url="http://traffic.libsyn.com/jeffgarlin/BTW_002_20130111_Dunham_EDIT_03.mp3" />
+		</item>
+		<item>
+			<title>1 Larry David</title>
+			<link><![CDATA[http://www.earwolf.com/episode/larry-david/]]></link>
+			<description><![CDATA[Curb Your Enthusiasm star Larry David admits he never would've agreed to this sort of malarky had Garlin not been such a close friend. Luckily for us, the magnetic misanthrope plays nicely with others, participating in audience games and revealing de...]]></description>
+			<guid isPermaLink="false"><![CDATA[http://www.earwolf.com/episode/larry-david/]]></guid>
+			<media:thumbnail url="http://cdn.earwolf.com/wp-content/uploads/2013/01/BTW-Logo.jpg" />
+			<pubDate>Thu, 10 Jan 2013 00:54:53 -0800</pubDate>
+			<itunes:explicit>Yes</itunes:explicit>
+			<itunes:subtitle><![CDATA[Curb Your Enthusiasm star Larry David admits he never would've agreed to this sort of malarky had Garlin not been such a close friend. Luckily for us, the magnetic misanthrope plays nicely with others, participating in audience games and revealing de...]]></itunes:subtitle>
+			<itunes:duration>01:22:02</itunes:duration>
+			<enclosure length="29535314" type="audio/mpeg" url="http://traffic.libsyn.com/jeffgarlin/BTW_001_20130105_David_EDIT_04.mp3" />
+		</item>
+	</channel>
+</rss>

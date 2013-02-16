@@ -53,16 +53,28 @@ module Podrick
         itunes = Struct.new(:subtitle, :author, :summary, :keywords, :explicit, :category, :subcategories, :image, :owner)
 
         itunes.new(
-          xml_doc.at_xpath("//itunes:subtitle").content,
-          xml_doc.at_xpath("//itunes:author").content,
-          xml_doc.at_xpath("//itunes:summary").content,
-          xml_doc.at_xpath("//itunes:keywords").content,
-          xml_doc.at_xpath("//itunes:explicit").content,
-          xml_doc.at_xpath("//itunes:category")["text"],
+          xml_content_at("//itunes:subtitle"),
+          xml_content_at("//itunes:author"),
+          xml_content_at("//itunes:summary"),
+          xml_content_at("//itunes:keywords"),
+          xml_content_at("//itunes:explicit"),
+          xml_node_at("//itunes:category")["text"],
           xml_doc.xpath("//itunes:category//itunes:category").map { |category| category["text"] },
-          image.new(xml_doc.at_xpath("//itunes:image")["href"]),
-          owner.new(xml_doc.at_xpath("//itunes:owner//itunes:name").content, xml_doc.at_xpath("//itunes:owner//itunes:email").content)
+          image.new(xml_node_at("//itunes:image")["href"]),
+          owner.new(xml_content_at("//itunes:owner//itunes:name"), xml_content_at("//itunes:owner//itunes:email"))
         )
+      end
+    end
+
+    def xml_content_at string
+      if node = xml_doc.at_xpath(string)
+        node.content
+      end
+    end
+
+    def xml_node_at string
+      if node = xml_doc.at_xpath(string)
+        node
       end
     end
 

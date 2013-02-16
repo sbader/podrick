@@ -51,6 +51,32 @@ module Podrick
         assert_equal "Society & Culture", podcast.itunes.category
         assert_equal " Personal Journals", podcast.itunes.subcategories[0]
       end
+
+      it "loads the metadata from another format" do
+        stub_request(:get, "http://rss.earwolf.com/by-the-way-in-conversation-with-jeff-garlin")
+          .to_return(:body => File.read('test/assets/by_the_way.xml'))
+
+        podcast = Podcast.from_url("http://rss.earwolf.com/by-the-way-in-conversation-with-jeff-garlin")
+        assert_equal "By The Way, In Conversation with Jeff Garlin", podcast.title
+        assert_equal "http://www.earwolf.com/show/by-the-way-in-conversation-with-jeff-garlin/", podcast.link
+
+        description = "By The Way, In Conversation with Jeff Garlin is an eavesdroppers paradise. Recorded live at Largo in LA, its a series of casual talks between the host and his most interesting show business friends. Agendas are out the window and no topics are off limits in these revealing chats."
+
+        assert_equal description, podcast.description
+        assert_equal "en-us", podcast.language
+
+        # itunes info
+        assert_equal "", podcast.itunes.subtitle
+        assert_equal "Earwolf", podcast.itunes.author
+        assert_equal "", podcast.itunes.summary
+        assert_equal "http://cdn.earwolf.com/wp-content/uploads/2013/01/BTW-Logo.jpg", podcast.itunes.image.href
+        assert_equal nil, podcast.itunes.keywords
+        assert_equal "Yes", podcast.itunes.explicit
+        assert_equal "Earwolf", podcast.itunes.owner.name
+        assert_equal "jeff@earwolf.com", podcast.itunes.owner.email
+        assert_equal "Comedy", podcast.itunes.category
+        assert_equal nil, podcast.itunes.subcategories[0]
+      end
     end
 
     describe "podcast episode loading" do

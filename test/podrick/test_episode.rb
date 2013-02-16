@@ -24,6 +24,27 @@ module Podrick
         assert_equal "http://icebox.5by5.tv/images/broadcasts/19/cover.jpg", episode.itunes.image.href
       end
 
+      it "loads the metadata from another format" do
+        item_xml = Nokogiri::XML(File.read('test/assets/radio_lab.xml')).at_xpath("//item")
+        episode = Episode.new(item_xml)
+
+        assert_equal "Speed\n", episode.title
+        assert_equal "http://feeds.wnyc.org/~r/radiolab/~3/aD0MohGPUvo/", episode.link
+        assert_equal "http://www.radiolab.org/2013/feb/05/", episode.guid
+        assert_equal Time.parse("2013-02-05 17:35:00 -0500"), episode.published_date
+        assert episode.description.include?("We live our lives at human speed, we experience and interact with the world")
+        assert_equal "http://feeds.wnyc.org/~r/radiolab/~5/HrqM1JwInZE/radiolab020513.mp3", episode.enclosure.url
+        assert_equal "0", episode.enclosure.length
+        assert_equal "audio/mpeg", episode.enclosure.type
+        assert_equal nil, episode.content
+        assert_equal "Jad Abumrad & Robert Krulwich", episode.itunes.author
+        assert_equal nil, episode.itunes.duration
+        assert_equal " We live our lives at human speed, we experience and interact with the world on a human time scale. But this hour, we put ourselves through the paces, peek inside a microsecond, and master the fastest thing in the universe. ", episode.itunes.subtitle
+        assert episode.itunes.summary.include?("We live our lives at human speed, we experience and interact with the world on a human time scale.")
+        assert_equal "Science,Technology,Philosophy,Education,radiolab,jad,abumrad,krulwich,Radio,Lab", episode.itunes.keywords
+        assert_equal nil, episode.itunes.image.href
+      end
+
       # it "downloads the enclosure" do
       # end
     end
