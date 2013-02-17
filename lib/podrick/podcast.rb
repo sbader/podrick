@@ -23,7 +23,7 @@ module Podrick
 
       response = Faraday.get(url, {}, headers)
 
-      if response.status == '301'
+      if response.status == 304
         nil
       else
         new(response.body, response.headers['ETag'])
@@ -41,7 +41,7 @@ module Podrick
     %w[link title description language].each do |method|
       class_eval <<-RUBY, __FILE__, __LINE__ + 1
         def #{method}
-          instance_variable_get("@#{method}") || instance_variable_set("@#{method}", xml_metadata.at_xpath("//#{method}").content)
+          instance_variable_get("@#{method}") || instance_variable_set("@#{method}", xml_content_at("//#{method}"))
         end
       RUBY
     end
@@ -67,13 +67,13 @@ module Podrick
     end
 
     def xml_content_at string
-      if node = xml_doc.at_xpath(string)
+      if node = xml_metadata.at_xpath(string)
         node.content
       end
     end
 
     def xml_node_at string
-      if node = xml_doc.at_xpath(string)
+      if node = xml_metadata.at_xpath(string)
         node
       end
     end
