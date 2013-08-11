@@ -16,7 +16,7 @@ module Podrick
     end
 
     def description
-      @description ||= load_description_without_images
+      @description ||= load_without_images("description")
     end
 
     def published_date
@@ -26,7 +26,7 @@ module Podrick
     alias pubDate published_date
 
     def content
-      @content ||= xml_content_at("content:encoded")
+      @content ||= content_without_images
     end
 
     def enclosure
@@ -86,9 +86,17 @@ module Podrick
 
     private
 
-    def load_description_without_images
-      description = xml_node_at("description")
-      html = Nokogiri::HTML(description.content)
+    def content_without_images
+      begin
+        load_without_images("content:encoded")
+      rescue Nokogiri::XML::XPath::SyntaxError
+        nil
+      end
+    end
+
+    def load_without_images node_name
+      node = xml_node_at(node_name)
+      html = Nokogiri::HTML(node.content)
       html.xpath("//img").each do |img|
         if img.key?("src")
           url = img["src"]
@@ -101,7 +109,7 @@ module Podrick
         img.remove
       end
 
-      html.content
+      html.to_html
     end
   end
 end
