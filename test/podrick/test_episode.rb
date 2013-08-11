@@ -45,6 +45,20 @@ module Podrick
         assert_equal nil, episode.itunes.image.href
       end
 
+      it "loads the metadata removing images in description" do
+        item_xml = Nokogiri::XML(File.read('test/assets/you_look_nice_today.xml')).at_xpath("//item")
+        episode = Episode.new(item_xml)
+
+        assert episode.description.include?("As part of a pilot program")
+
+        assert !episode.description.include?("<img src"), "Description still contains img tag"
+        assert !episode.description.include?("https://dl.dropbox.com/u/3423/i/ylnt/ylnt_s02e11_wish/ylnt_s02e11.jpg"), "Description still contains image url"
+        assert !episode.description.include?("http://feeds.feedburner.com/~r/YouLookNiceToday/~4/CLx_UnRTK2U"), "Description still contains tracking image url"
+        assert episode.itunes.summary.include?("You win awards by confusing people.")
+
+        assert_equal 2, episode.images.count
+      end
+
       # it "downloads the enclosure" do
       # end
     end

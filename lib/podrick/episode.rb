@@ -1,17 +1,22 @@
 module Podrick
   class Episode
-    attr_reader :xml_doc
+    attr_reader :xml_doc, :images
 
     def initialize xml_doc
       @xml_doc = xml_doc
+      @images = []
     end
 
-    %w[title link guid author description].each do |method|
+    %w[title link guid author].each do |method|
       class_eval <<-RUBY, __FILE__, __LINE__ + 1
         def #{method}
           instance_variable_get("@#{method}") || instance_variable_set("@#{method}", xml_content_at("#{method}"))
         end
       RUBY
+    end
+
+    def description
+      @description ||= load_description_without_images
     end
 
     def published_date
@@ -57,6 +62,12 @@ module Podrick
       end
     end
 
+    def add_image url, width = nil, height = nil
+      image_struct = Struct.new(:url, :width, :height)
+
+      @images << image_struct.new(url, width, height)
+    end
+
     def xml_content_at string
       begin
         if node = xml_doc.at_xpath(string)
@@ -71,6 +82,26 @@ module Podrick
       if node = xml_doc.at_xpath(string)
         node
       end
+    end
+
+    private
+
+    def load_description_without_images
+      description = xml_node_at("description")
+      html = Nokogiri::HTML(description.content)
+      html.xpath("//img").each do |img|
+        if img.key?("src")
+          url = img["src"]
+          height = img["height"]
+          width = img["width"]
+
+          add_image(url, width, height)
+        end
+
+        img.remove
+      end
+
+      html.content
     end
   end
 end
