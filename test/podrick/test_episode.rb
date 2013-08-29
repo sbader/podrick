@@ -59,8 +59,14 @@ module Podrick
         assert_equal 2, episode.images.count
       end
 
-      # it "downloads the enclosure" do
-      # end
+      it "loads another failing format" do
+        item_xml = Nokogiri::XML(File.read('test/assets/roderick_on_the_line.xml')).at_xpath("//item")
+        episode = Episode.new(item_xml)
+
+        assert_equal nil, episode.content, "Episode description should be nil"
+        assert episode.description.include?("<strong>The Problem</strong>"), "Episode description does not contain first given string"
+        assert episode.description.include?("in a mine shaft"), "Episode description does not contain second given string"
+      end
     end
   end
 end

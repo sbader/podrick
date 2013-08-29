@@ -96,6 +96,9 @@ module Podrick
 
     def load_without_images node_name
       node = xml_node_at(node_name)
+
+      return nil if node.nil?
+
       html = Nokogiri::HTML(node.content)
       html.xpath("//img").each do |img|
         if img.key?("src")
