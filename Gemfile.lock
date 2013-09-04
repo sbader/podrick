@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    podrick (0.0.1)
+    podrick (0.0.2)
       faraday (~> 0.8.5)
       nokogiri (~> 1.5.6)
 
