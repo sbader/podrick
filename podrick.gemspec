@@ -7,7 +7,7 @@ Gem::Specification.new do |gem|
   gem.email         = "sbader2@gmail.com"
   gem.summary       = "A simple library to work with podcasts"
   gem.description   = "Podrick is a library that allows you to quickly, and easily work with a podcast feed. You can parse a feed, see the newest episodes, and download files"
-  gem.homepage      = "http://sbader.github.com/castpod"
+  gem.homepage      = "http://sbader.github.com/podrick"
   gem.license       = "MIT"
 
   gem.version       = Podrick::VERSION
